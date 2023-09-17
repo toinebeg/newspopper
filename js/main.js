@@ -68,9 +68,7 @@ const init = () => {
 
   wordBagDiv.appendChild(
     createElmt(shuffledWords.reduce((acc, word) => {
-
-       acc += `<div class="word" >${word}</div>`
-
+       acc += `<div class="word" >${word}</div>`;
       return acc
     }, ''))
   )
