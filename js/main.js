@@ -40,7 +40,7 @@ function shuffle(array) {
 
 function onDragStart(event) {
 
-  console.log("dragStart ", event)
+//  console.log("dragStart ", event)
   event
     .dataTransfer
     .setData('text/plain', event.target.id);
@@ -56,7 +56,7 @@ function onDragStart(event) {
 
 function onDragOver(event) {
 
-  console.log("drag over", event)
+ // console.log("drag over", event)
   event.preventDefault();
 }
 
@@ -65,7 +65,7 @@ function onDrop(event) {
 
   const dropzoneDiv = document.querySelector("#dropZone")
 
-  console.log("drop", event)
+//  console.log("drop", event)
 
   const id = event
     .dataTransfer
@@ -86,13 +86,22 @@ function onDrop(event) {
 function checkTitle() {
   const dropzoneDiv = document.querySelector("#dropZone");
   const resultDiv = document.querySelector("#result")
-
-  const children = [...dropzoneDiv.children].reduce((acc, wordElem) => {
+  const select = document.getElementById("newsPaperSelect");
+  const value = select.value;
+  const userTitle = [...dropzoneDiv.children].reduce((acc, wordElem) => {
     acc += wordElem.innerText + " ";
     return acc;
   }, '')
+  const journalTitle = data[value].title;
+  const userTitleArray = userTitle.split(" ");
+  const journalTitleArray = journalTitle.split(" ");
+  const journalTitleLength = journalTitleArray.length;
+  const diff = _.difference(userTitleArray, journalTitleArray);
+  const score = journalTitleLength - diff.length;
+  const percent = score/journalTitleLength * 100
+  console.log({value, userTitle, journalTitle, diff, score })
 
-  resultDiv.innerText = children;
+  resultDiv.innerText = `You got ${Math.floor(percent)}% correspondence`;
 
 }
 
