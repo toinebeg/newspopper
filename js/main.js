@@ -63,7 +63,7 @@ function onDragOver(event) {
 
 function removeWord(e) {
   const element = e.target
-  element.remove()
+  element.remove();
 }
 
 function onDrop(event) {
