@@ -91,11 +91,15 @@ const data = {
     title : "Restraining order imposed on scandal-hit ex-Spain football boss Rubiales",
     url: "https://www.aljazeera.com/news/2023/9/15/spains-former-football-boss-rubiales-in-court-over-world-cup-kiss-scandal"
   },
-
   thesun : {
     name: "The Sun",
     title: "KISS SHAME Ex-Spain FA chief Luis Rubiales hit with restraining order and banned from contacting Jenni Hermoso after kiss outrage",
     url : "https://www.thesun.co.uk/sport/23967243/luis-rubiales-court-denying-wrongdoing-jenni-hermoso/"
+  },
+  bbc: {
+    name: "BBC",
+    title: "Luis Rubiales given Spanish restraining order over World Cup kiss",
+    url: 'https://www.bbc.com/news/world-europe-66818691.amp'
   }
 }
 
