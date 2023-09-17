@@ -83,7 +83,18 @@ function onDrop(event) {
 }
 
 
+function checkTitle() {
+  const dropzoneDiv = document.querySelector("#dropZone");
+  const resultDiv = document.querySelector("#result")
 
+  const children = [...dropzoneDiv.children].reduce((acc, wordElem) => {
+    acc += wordElem.innerText + " ";
+    return acc;
+  }, '')
+
+  resultDiv.innerText = children;
+
+}
 
 const data = {
   reuters : {
