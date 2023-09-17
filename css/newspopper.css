@@ -15,6 +15,7 @@
   padding: 2px;
   border: 1px gray solid;
   border-radius: 15px;
+  height: fit-content;
 }
 
 
@@ -22,4 +23,17 @@
   height: 60px;
   width: 600px;
   background-color: dimgrey;
+  display: flex;
+  flex-direction: row;
+}
+ .linkButton {
+   background-color: #333; /* adds a background colour to the button */
+   color: #fff; /* changes the text colour */
+   cursor: pointer; /* changes the mouse on hover */
+   padding: 10px 30px; /* adds 10px of space to top and bottom of text and 30px of space on either side */
+ }
+
+.linkButton:hover {
+  background-color: #fff; /* adds a background hover colour to the button */
+  color: #333; /* changes the text colour on hover */
 }
