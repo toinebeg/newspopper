@@ -50,7 +50,7 @@ function onDragStart(event) {
   event
     .currentTarget
     .style
-    .backgroundColor = 'yellow';
+    .backgroundColor = '#53C0FF';
 
 }
 

@@ -37,3 +37,39 @@
   background-color: #fff; /* adds a background hover colour to the button */
   color: #333; /* changes the text colour on hover */
 }
+
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #12130F;
+  color: #FFFFFF; /* Default text color */
+  padding: 2rem;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #53C0FF; /* Making h1 in secondary color for emphasis */
+}
+
+a {
+  color: #53C0FF; /* Secondary color for links */
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+
+a:hover {
+  background-color: #53C0FF; /* Secondary color when hovered */
+  color: #12130F; /* Dark background color for contrast on hover */
+}
+#dropZone, #wordsBag {
+  padding: 2rem;
+  margin: 1rem 0;
+  border: 1px solid #53C0FF; /* Using the secondary color for border */
+  border-radius: 4px;
+  background-color: #12130F; /* Using the background color */
+}
