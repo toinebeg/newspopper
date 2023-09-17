@@ -73,3 +73,9 @@ a:hover {
   border-radius: 4px;
   background-color: #12130F; /* Using the background color */
 }
+
+
+#result {
+  font-size: large;
+  font-weight: bold;
+}

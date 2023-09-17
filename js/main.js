@@ -61,6 +61,11 @@ function onDragOver(event) {
 }
 
 
+function removeWord(e) {
+  const element = e.target
+  element.remove()
+}
+
 function onDrop(event) {
 
   const dropzoneDiv = document.querySelector("#dropZone")
@@ -75,6 +80,7 @@ function onDrop(event) {
   const draggableElement = document.getElementById(id);
   const nodeCopy = draggableElement.cloneNode(true);
   nodeCopy.id = draggableElement.id + "_selected";
+  nodeCopy.addEventListener('click', removeWord)
   dropzoneDiv.appendChild(nodeCopy);
 
   event
@@ -154,7 +160,7 @@ const init = () => {
 
   wordBagDiv.appendChild(
     createElmt(shuffledWords.reduce((acc, word, idx) => {
-       acc += `<div class="word" draggable="true" id="word${idx}" >${word}</div>`;
+       acc += `<div class="word" draggable="true" id="word${idx}"  >${word}</div>`;
       return acc
     }, ''))
   )
