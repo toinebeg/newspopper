@@ -135,6 +135,7 @@ const data = {
 }
 
 
+const extraWords = ["judge", "with"]
 
 
 const init = () => {
@@ -151,8 +152,8 @@ const init = () => {
     const words = journal.title.split(" ");
     acc = [...acc, ...words]
     return acc;
-  }, [])
-  const shuffledWords = shuffle(words)
+  }, []);
+  const shuffledWords = shuffle([...words, ...extraWords]);
   const wordBagDiv = document.querySelector("#wordsBag")
   const dropzoneDiv = document.querySelector("#dropZone")
   const ctaElem = document.querySelector("#cta")
