@@ -107,7 +107,7 @@ function checkTitle() {
   const percent = score/journalTitleLength * 100
   console.log({value, userTitle, journalTitle, diff, score })
 
-  resultDiv.innerText = `You got ${Math.floor(percent)}% correspondence`;
+  resultDiv.innerText = `You are ${Math.floor(percent)}% there`;
 
 }
 
