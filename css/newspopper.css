@@ -1,0 +1,18 @@
+
+
+#wordsBag {
+  display: flex;
+  gap: 10px;
+  width: 800px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.word {
+  display: block;
+  box-shadow: 10px 5px 5px gray;
+  padding: 2px;
+  border: 1px gray solid;
+  border-radius: 15px;
+}
