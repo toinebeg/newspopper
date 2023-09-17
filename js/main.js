@@ -104,6 +104,13 @@ const data = {
 
 const init = () => {
 
+  const selectElem = document.getElementById('newsPaperSelect');
+
+  selectElem.appendChild(createElmt(Object.keys(data).reduce((acc, journalId) => {
+    const journalName = data[journalId].name
+    acc += `<option value="${journalId}" >${journalName}</option>`;
+    return acc
+  }, '')))
 
   const words = Object.values(data).reduce((acc, journal) => {
     const words = journal.title.split(" ");
