@@ -14,6 +14,12 @@ function createElmt(htmlStr) {
 }
 
 
+function addEventListenerList(list, event, fn) {
+  for (var i = 0, len = list.length; i < len; i++) {
+    list[i].addEventListener(event, fn, false);
+  }
+}
+
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
 
@@ -30,6 +36,48 @@ function shuffle(array) {
   }
 
   return array;
+}
+
+function onDragStart(event) {
+
+  console.log("dragStart ", event)
+  event
+    .dataTransfer
+    .setData('text/plain', event.target.id);
+
+  event
+    .currentTarget
+    .style
+    .backgroundColor = 'yellow';
+
+}
+
+function onDragOver(event) {
+
+  console.log("drag over", event)
+  event.preventDefault();
+}
+
+
+function onDrop(event) {
+
+  const dropzoneDiv = document.querySelector("#dropZone")
+
+  console.log("drop", event)
+
+  const id = event
+    .dataTransfer
+    .getData('text');
+
+  console.log(id)
+  const draggableElement = document.getElementById(id);
+
+  console.log(draggableElement)
+  dropzoneDiv.appendChild(draggableElement);
+
+  event
+    .dataTransfer
+    .clearData();
 }
 
 const data = {
@@ -64,16 +112,23 @@ const init = () => {
   }, [])
   const shuffledWords = shuffle(words)
   const wordBagDiv = document.querySelector("#wordsBag")
+  const dropzoneDiv = document.querySelector("#dropZone")
 
 
   wordBagDiv.appendChild(
-    createElmt(shuffledWords.reduce((acc, word) => {
-       acc += `<div class="word" >${word}</div>`;
+    createElmt(shuffledWords.reduce((acc, word, idx) => {
+       acc += `<div class="word" draggable="true" id="word${idx}" >${word}</div>`;
       return acc
     }, ''))
   )
 
+
+   const renderedWords = document.querySelectorAll('.word');
+  addEventListenerList(renderedWords, 'dragstart', onDragStart);
   console.log("coucou", words)
+
+  dropzoneDiv.addEventListener('dragover', onDragOver);
+  dropzoneDiv.addEventListener('drop', onDrop);
 
 
 }
