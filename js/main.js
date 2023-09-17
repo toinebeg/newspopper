@@ -45,6 +45,8 @@ function onDragStart(event) {
     .dataTransfer
     .setData('text/plain', event.target.id);
 
+  event.dataTransfer.dropEffect = "copy";
+
   event
     .currentTarget
     .style
@@ -71,14 +73,17 @@ function onDrop(event) {
 
   console.log(id)
   const draggableElement = document.getElementById(id);
-
-  console.log(draggableElement)
-  dropzoneDiv.appendChild(draggableElement);
+  const nodeCopy = draggableElement.cloneNode(true);
+  nodeCopy.id = draggableElement.id + "_selected";
+  dropzoneDiv.appendChild(nodeCopy);
 
   event
     .dataTransfer
     .clearData();
 }
+
+
+
 
 const data = {
   reuters : {
@@ -124,6 +129,7 @@ const init = () => {
   const shuffledWords = shuffle(words)
   const wordBagDiv = document.querySelector("#wordsBag")
   const dropzoneDiv = document.querySelector("#dropZone")
+  const ctaElem = document.querySelector("#cta")
 
 
   wordBagDiv.appendChild(
@@ -141,6 +147,7 @@ const init = () => {
   dropzoneDiv.addEventListener('dragover', onDragOver);
   dropzoneDiv.addEventListener('drop', onDrop);
 
+  ctaElem.addEventListener('click', checkTitle)
 
 }
 
