@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/newspopper.css">
+  <meta charset="UTF-8">
+  <title>Select words</title>
+</head>
+<body>
+<h1>Fill the blanks</h1>
+
+<div class="fillWord">
+<p>What do you think Al Jazeera wrote ?</p>
+<p>Spain’s football chief Luis Rubiales resigns after World Cup <select class="test" data-answer="kiss" >
+      <option disabled selected value> -- select an option -- </option>
+      <option>kiss</option>
+      <option>harassment</option>
+      <option>sex</option>
+    </select>scandal</p>
+</div>
+
+<div class="fillWord">
+  <p>What do you think the sun wrote ?</p>
+  <p>PLAYING IT COOL World Cup winner Jenni Hermoso snapped for first time after <select class="test" data-answer="kissgate" >
+    <option disabled selected value> -- select an option -- </option>
+    <option>kissgate</option>
+    <option>minor</option>
+    <option>sex</option>
+  </select>scandal at ice cream parlour</p>
+</div>
+
+
+<script>
+
+  function checkResult(e){
+    const userResponse = e.target.value;
+    const answer = e.target.attributes.getNamedItem('data-answer').nodeValue
+    const parentParagraph = e.target.parentElement
+    if(userResponse === answer) {
+      parentParagraph.style.background = "green";
+    } else {
+      parentParagraph.style.background = "red";
+    }
+  }
+  const selects = document.querySelectorAll(".test");
+  for (const select of selects) {
+    select.addEventListener("change", checkResult);
+  }
+
+</script>
+</body>
+</html>

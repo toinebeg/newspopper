@@ -111,6 +111,15 @@ function checkTitle() {
 
 }
 
+function revealTitle() {
+  const answerDiv = document.querySelector("#answer")
+
+  const select = document.getElementById("newsPaperSelect");
+  const value = select.value;
+  const journalTitle = data[value].title;
+  answerDiv.innerHTML = journalTitle
+}
+
 const data = {
   reuters : {
     name: "Reuters",
@@ -156,7 +165,8 @@ const init = () => {
   const shuffledWords = shuffle([...words, ...extraWords]);
   const wordBagDiv = document.querySelector("#wordsBag")
   const dropzoneDiv = document.querySelector("#dropZone")
-  const ctaElem = document.querySelector("#cta")
+  const ctaCheckElem = document.querySelector("#ctaCheck")
+  const ctaReveal = document.querySelector("#ctaReveal")
 
 
   wordBagDiv.appendChild(
@@ -169,12 +179,13 @@ const init = () => {
 
    const renderedWords = document.querySelectorAll('.word');
   addEventListenerList(renderedWords, 'dragstart', onDragStart);
-  console.log("coucou", words)
 
   dropzoneDiv.addEventListener('dragover', onDragOver);
   dropzoneDiv.addEventListener('drop', onDrop);
 
-  ctaElem.addEventListener('click', checkTitle)
+  ctaCheckElem.addEventListener('click', checkTitle)
+  ctaReveal.addEventListener('click', revealTitle)
+
 
 }
 
