@@ -1,5 +1,9 @@
 
 
+select {
+  display: inline-block;
+}
+
 #wordsBag {
   display: flex;
   gap: 10px;
