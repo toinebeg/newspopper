@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html color-mode="dark" lang="en">
 <head>
   <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="https://unpkg.com/mvp.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/newspopper.css">
+  <link rel="stylesheet" href="css/fillTheBlank.css">
   <meta charset="UTF-8">
   <title>Select words</title>
 </head>
@@ -11,23 +13,30 @@
 <h1>Fill the blanks</h1>
 
 <div class="fillWord">
-<p>What do you think Al Jazeera wrote ?</p>
-<p>Spain’s football chief Luis Rubiales resigns after World Cup <select class="test" data-answer="kiss" >
-      <option disabled selected value> -- select an option -- </option>
+<h4><i>What do you think Al Jazeera wrote ?</i></h4>
+<h3>Spain’s football chief Luis Rubiales resigns after World Cup <select class="test" data-answer="kiss" >
+      <option disabled selected value></option>
       <option>kiss</option>
       <option>harassment</option>
       <option>sex</option>
-    </select>scandal</p>
+    </select> scandal</h3>
+  <p class="redComment">No no not that one</p>
+
+  <p class="greenComment">Yep this is it</p>
 </div>
 
 <div class="fillWord">
-  <p>What do you think the sun wrote ?</p>
-  <p>PLAYING IT COOL World Cup winner Jenni Hermoso snapped for first time after <select class="test" data-answer="kissgate" >
-    <option disabled selected value> -- select an option -- </option>
+  <h4><i>What do you think the sun wrote ?</i></h4>
+  <h3>PLAYING IT COOL World Cup winner Jenni Hermoso snapped for first time after <select class="test" data-answer="kissgate" >
+    <option disabled selected value></option>
     <option>kissgate</option>
     <option>minor</option>
     <option>sex</option>
-  </select>scandal at ice cream parlour</p>
+  </select> scandal at ice cream parlour</h3>
+
+  <p class="redComment">No, they did not write THAT</p>
+
+  <p class="greenComment">Yes, that's The Sun for you</p>
 </div>
 
 
@@ -37,10 +46,20 @@
     const userResponse = e.target.value;
     const answer = e.target.attributes.getNamedItem('data-answer').nodeValue
     const parentParagraph = e.target.parentElement
+    const parentDiv = parentParagraph.parentElement
+    const greenComment = parentDiv.querySelector(".greenComment")
+    const redComment = parentDiv.querySelector(".redComment")
+
+    //hide all
+
+    greenComment.style.display = "none"
+
+    redComment.style.display = "none"
+
     if(userResponse === answer) {
-      parentParagraph.style.background = "green";
+      greenComment.style.display = "inline"
     } else {
-      parentParagraph.style.background = "red";
+      redComment.style.display = "inline"
     }
   }
   const selects = document.querySelectorAll(".test");

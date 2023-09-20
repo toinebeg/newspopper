@@ -1,0 +1,25 @@
+
+/*fill the blank*/
+
+
+
+.greenComment {
+  color: green;
+}
+
+.redComment {
+  color: red;
+}
+
+.greenComment, .redComment {
+  display: none;
+}
+
+
+select {
+  display: inline-block;
+}
+
+.fillWord + .fillWord {
+  border-top: 1px white dashed;
+}
