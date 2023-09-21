@@ -1,3 +1,8 @@
+const blueColorCode = '#53C0FF';
+const redColorCode = '#ff3105';
+const yellowColorCode = '#ffd805';
+const greenColorCode = '#7ED957'
+
 function createElmt(htmlStr) {
   var
     helper = document.createElement('div'),
@@ -50,7 +55,7 @@ function onDragStart(event) {
   event
     .currentTarget
     .style
-    .backgroundColor = '#53C0FF';
+    .backgroundColor = blueColorCode;
 
 }
 
@@ -86,11 +91,14 @@ function onDrop(event) {
   event
     .dataTransfer
     .clearData();
+
+  resetSelectedWordsBackground()
 }
 
 
 function checkTitle() {
 
+  revealHints()
   // gathering data
   const dropzoneDiv = document.querySelector("#dropZone");
   const resultDiv = document.querySelector("#result")
@@ -107,28 +115,74 @@ function checkTitle() {
   const journalTitleLength = journalTitleArray.length;
   // score computation
 
-  wordElems.forEach((wordElem) => {
-    if(!journalTitleArray.includes(wordElem.innerText)) {
-      wordElem.style.backgroundColor = "red";
-    }
-  })
-  const diff = _.difference(userTitleArray, journalTitleArray);
-  const score = journalTitleLength - diff.length;
-  const percent = score/journalTitleLength * 100
-  console.log({value, userTitle, journalTitle, diff, score })
+  wordElems.forEach((wordElem, idx) => {
 
-  resultDiv.innerText = `You are ${Math.floor(percent)}% there`;
+    if(!journalTitleArray.includes(wordElem.innerText)) {
+      wordElem.style.backgroundColor = redColorCode;
+      return;
+    }
+    if(journalTitleArray.indexOf(wordElem.innerText) === idx) {
+      wordElem.style.backgroundColor = greenColorCode;
+      return;
+    }
+    wordElem.style.backgroundColor = yellowColorCode;
+
+  })
+  // const diff = _.difference(userTitleArray, journalTitleArray);
+  // const score = journalTitleLength - diff.length;
+  // const percent = score/journalTitleLength * 100
+  // console.log({value, userTitle, journalTitle, diff, score })
+  //
+  // resultDiv.innerText = `You are ${Math.floor(percent)}% there`;
 
 }
 
-function revealTitle() {
+function resetSelectedWordsBackground(){
+  const dropzoneDiv = document.querySelector("#dropZone");
+  const wordElems =  [...dropzoneDiv.children];
+  wordElems.forEach((wordElem, idx) => {
+    wordElem.style.backgroundColor = yellowColorCode;
+  })
+
+  }
+
+  function revealHints() {
+    const hintsElem = document.querySelector("#hints")
+    hintsElem.style.display = 'block'
+  }
+
+
+ function onCtaRevealClick() {
+   const answerDiv = document.querySelector("#answer")
+   if( answerDiv.innerHTML === '') {
+     revealAnswer()
+   }else {
+     hideAnswer();
+   }
+ }
+function hideAnswer() {
+  const ctaReveaElem = document.querySelector("#ctaReveal")
   const answerDiv = document.querySelector("#answer")
 
+  answerDiv.innerHTML = '';
+  ctaReveaElem.innerText = 'Reveal The Real Title !';
+}
+
+function revealAnswer() {
+  const answerDiv = document.querySelector("#answer")
+  const ctaReveaElem = document.querySelector("#ctaReveal")
+  ctaReveaElem.innerText = 'hide the Title !';
   const select = document.getElementById("newsPaperSelect");
   const value = select.value;
   const journalTitle = data[value].title;
   const articleUrl = data[value].url;
   answerDiv.innerHTML = `<h2>${journalTitle}</h2><a href="${articleUrl}" target="_blank" >Read the article !</a>`
+}
+
+function onNewsSourceChange() {
+  resetSelectedWordsBackground();
+  hideAnswer();
+
 }
 
 const data = {
@@ -195,7 +249,10 @@ const init = () => {
   dropzoneDiv.addEventListener('drop', onDrop);
 
   ctaCheckElem.addEventListener('click', checkTitle)
-  ctaReveal.addEventListener('click', revealTitle)
+  ctaReveal.addEventListener('click', onCtaRevealClick)
+
+  const select = document.querySelector("#newsPaperSelect");
+  select.addEventListener("change", onNewsSourceChange);
 
 
 }

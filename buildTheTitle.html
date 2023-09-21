@@ -32,8 +32,14 @@
 <script type="module" src="js/buildTheTitle.js"></script>
 
 <div>What whould be the headline from <select id="newsPaperSelect" ></select> for this event </div>
+<p>Drop words in the correct order to build the best title according to news source style then check if you close to the real one</p>
 
 <div id="dropZone" ></div>
+<div id="hints" style="display: none" > <h4>hints : </h4>
+  <ul>
+  <li><span style="color: #ff3105">Red</span> - The word is not in the original title </li>
+  <li><span style="color: #ffd805">Yellow</span> - The word is not at that place in the original title</li>
+  <li><span style="color: #7ED957">Green</span> - Right Word, Right Place</li></ul></div>
 <button id="ctaCheck" >Check it out !</button>  <button id="ctaReveal" >Reveal The Real Title !</button>
 
 <div id="result"></div>
