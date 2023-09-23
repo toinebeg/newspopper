@@ -15,14 +15,22 @@ select {
 
 .word {
   display: block;
-  box-shadow: 10px 5px 5px gray;
+  box-shadow: 5px 3px 2px gray;
+  background-color: beige;
+  color: black;
   padding: 2px;
   border: 1px gray solid;
-  border-radius: 15px;
+  border-radius: 5px;
   height: fit-content;
   cursor:pointer;
 }
 
+
+#dropAndHints {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
 
 #dropZone {
   height: 60px;

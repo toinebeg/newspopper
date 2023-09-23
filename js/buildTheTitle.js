@@ -3,6 +3,7 @@ const redColorCode = '#ff3105';
 const yellowColorCode = '#ffd805';
 const greenColorCode = '#7ED957'
 
+const beigeColor = "#F5F5DC"
 function createElmt(htmlStr) {
   var
     helper = document.createElement('div'),
@@ -43,58 +44,10 @@ function shuffle(array) {
   return array;
 }
 
-function onDragStart(event) {
-
-//  console.log("dragStart ", event)
-  event
-    .dataTransfer
-    .setData('text/plain', event.target.id);
-
-  event.dataTransfer.dropEffect = "copy";
-
-  event
-    .currentTarget
-    .style
-    .backgroundColor = blueColorCode;
-
-}
-
-function onDragOver(event) {
-
- // console.log("drag over", event)
-  event.preventDefault();
-}
-
-
 function removeWord(e) {
   const element = e.target
   element.remove();
 }
-
-function onDrop(event) {
-
-  const dropzoneDiv = document.querySelector("#dropZone")
-
-//  console.log("drop", event)
-
-  const id = event
-    .dataTransfer
-    .getData('text');
-
-  console.log(id)
-  const draggableElement = document.getElementById(id);
-  const nodeCopy = draggableElement.cloneNode(true);
-  nodeCopy.id = draggableElement.id + "_selected";
-  nodeCopy.addEventListener('click', removeWord)
-  dropzoneDiv.appendChild(nodeCopy);
-
-  event
-    .dataTransfer
-    .clearData();
-
-  resetSelectedWordsBackground()
-}
-
 
 function checkTitle() {
 
@@ -128,13 +81,6 @@ function checkTitle() {
     wordElem.style.backgroundColor = yellowColorCode;
 
   })
-  // const diff = _.difference(userTitleArray, journalTitleArray);
-  // const score = journalTitleLength - diff.length;
-  // const percent = score/journalTitleLength * 100
-  // console.log({value, userTitle, journalTitle, diff, score })
-  //
-  // resultDiv.innerText = `You are ${Math.floor(percent)}% there`;
-
 }
 
 function resetSelectedWordsBackground(){
@@ -177,6 +123,15 @@ function revealAnswer() {
   const journalTitle = data[value].title;
   const articleUrl = data[value].url;
   answerDiv.innerHTML = `<h2>${journalTitle}</h2><a href="${articleUrl}" target="_blank" >Read the article !</a>`
+}
+
+function moveWords(e) {
+    if (this.parentNode.id === "wordsBag") {
+      document.getElementById('dropZone').appendChild(e.target);
+    } else {
+      e.target.style.backgroundColor = beigeColor;
+      document.getElementById('wordsBag').appendChild(e.target);
+    }
 }
 
 function onNewsSourceChange() {
@@ -243,10 +198,8 @@ const init = () => {
 
 
    const renderedWords = document.querySelectorAll('.word');
-  addEventListenerList(renderedWords, 'dragstart', onDragStart);
+  addEventListenerList(renderedWords, "click", moveWords)
 
-  dropzoneDiv.addEventListener('dragover', onDragOver);
-  dropzoneDiv.addEventListener('drop', onDrop);
 
   ctaCheckElem.addEventListener('click', checkTitle)
   ctaReveal.addEventListener('click', onCtaRevealClick)
