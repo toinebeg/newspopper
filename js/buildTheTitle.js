@@ -87,7 +87,7 @@ function resetSelectedWordsBackground(){
   const dropzoneDiv = document.querySelector("#dropZone");
   const wordElems =  [...dropzoneDiv.children];
   wordElems.forEach((wordElem, idx) => {
-    wordElem.style.backgroundColor = yellowColorCode;
+    wordElem.style.backgroundColor = beigeColor;
   })
 
   }
@@ -156,10 +156,15 @@ const data = {
     title: "KISS SHAME Ex-Spain FA chief Luis Rubiales hit with restraining order and banned from contacting Jenni Hermoso after kiss outrage",
     url : "https://www.thesun.co.uk/sport/23967243/luis-rubiales-court-denying-wrongdoing-jenni-hermoso/"
   },
-  bbc: {
-    name: "BBC",
-    title: "Luis Rubiales given Spanish restraining order over World Cup kiss",
-    url: 'https://www.bbc.com/news/world-europe-66818691.amp'
+  // bbc: {
+  //   name: "BBC",
+  //   title: "Luis Rubiales given Spanish restraining order over World Cup kiss",
+  //   url: 'https://www.bbc.com/news/world-europe-66818691.amp'
+  // },
+  foxnews: {
+    name: 'Fox News',
+    title: 'Luis Rubiales given restraining order after denying wrongdoing in front of Spanish judge',
+    url: 'https://www.foxnews.com/sports/spanish-fa-president-refuses-resign-kissing-controversy-calls-out-false-feminism'
   }
 }
 
